@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Darlin Fae I. Tingco - 18th Gothic Debut | Save the Date</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Montserrat:wght@300;400;500;600&family=Pinyon+Script&display=swap" rel="stylesheet">
+    <!-- Tone.js for Audio Synth -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #080304;
+            color: #e5e5e5;
+            overflow-x: hidden;
+        }
+        .font-cinzel { font-family: 'Cinzel', serif; }
+        .font-script { font-family: 'Pinyon Script', cursive; }
+
+        .gothic-border {
+            border: 2px solid #8B0000;
+            box-shadow: 0 0 25px rgba(139, 0, 0, 0.4), inset 0 0 15px rgba(0, 0, 0, 0.9);
+        }
+        .gothic-card {
+            background: linear-gradient(145deg, #120305 0%, #080203 70%, #1a0406 100%);
+        }
+        .crimson-glow {
+            text-shadow: 0 0 12px rgba(186, 12, 47, 0.7);
+        }
+        .gold-glow {
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+        .candle-flame {
+            background: radial-gradient(circle, #ffd700 0%, #ff4500 60%, transparent 100%);
+            animation: flicker 1.5s infinite alternate ease-in-out;
+        }
+        @keyframes flicker {
+            0% { transform: scale(0.9); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; filter: drop-shadow(0 0 8px #ff4500); }
+            100% { transform: scale(0.95); opacity: 0.85; }
+        }
+    </style>
+</head>
+<body class="relative min-h-screen flex flex-col justify-between items-center px-4 py-8">
+
+    <!-- Canvas Animation para sa Floating Petals -->
+    <canvas id="petalCanvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
+
+    <!-- Music Control Button -->
+    <div class="fixed top-4 right-4 z-50">
+        <button id="musicBtn" onclick="toggleAudio()" class="flex items-center gap-2 bg-black/80 border border-red-900/60 text-red-200 px-4 py-2 rounded-full text-xs tracking-widest hover:border-red-600 transition-all shadow-lg backdrop-blur-sm">
+            <span id="musicIcon">🎵</span> <span id="musicText">PLAY ATMOSPHERE</span>
+        </button>
+    </div>
+
+    <!-- Main Invitation Container -->
+    <main class="relative z-10 w-full max-w-2xl mx-auto my-auto gothic-card gothic-border rounded-lg p-6 sm:p-10 my-6 text-center border-amber-900/30">
+
+        <!-- Header Decor -->
+        <div class="flex justify-center items-center gap-4 mb-2">
+            <div class="h-[1px] w-12 bg-gradient-to-r from-transparent to-red-800"></div>
+            <span class="text-red-700 text-xs tracking-[0.3em] font-cinzel">DARK ELEGANCE AWAITS</span>
+            <div class="h-[1px] w-12 bg-gradient-to-l from-transparent to-red-800"></div>
+        </div>
+
+        <h3 class="text-amber-500/80 font-cinzel tracking-[0.25em] text-sm sm:text-base uppercase mb-1">Save the Date For</h3>
+
+        <!-- Name -->
+        <h1 class="text-4xl sm:text-6xl font-script text-red-600 crimson-glow my-3 tracking-wide">
+            Darlin Fae I. Tingco
+        </h1>
+
+        <p class="font-cinzel text-xs sm:text-sm tracking-[0.3em] text-gray-400 mb-6">IS TURNING 18</p>
+
+        <!-- Divider Candle Motif -->
+        <div class="flex justify-center items-center gap-2 my-4 opacity-80">
+            <div class="w-1.5 h-3 rounded-full candle-flame"></div>
+            <div class="h-[1px] w-24 bg-red-900"></div>
+            <div class="w-1.5 h-3 rounded-full candle-flame"></div>
+        </div>
+
+        <!-- Date & Time -->
+        <div class="my-6">
+            <div class="text-2xl sm:text-3xl font-cinzel text-amber-200/90 tracking-widest font-bold">
+                DECEMBER 19, 2027
+            </div>
+            <p class="text-xs text-red-400 font-cinzel tracking-widest mt-1">SUNDAY • 6:00 PM IN THE EVENING</p>
+        </div>
+
+        <!-- Venue Details -->
+        <div class="bg-black/50 border border-red-950/80 rounded-md p-4 my-6 backdrop-blur-xs">
+            <p class="text-xs text-gray-400 uppercase tracking-widest font-cinzel mb-1">Venue Location</p>
+            <h4 class="text-base sm:text-lg font-cinzel text-gray-200 font-semibold">Chalie's Restaurant &amp; D'Jocos Resort</h4>
+            <p class="text-xs text-gray-400 mt-1">Muzon, Naic, Cavite, Philippines</p>
+        </div>
+
+        <!-- Countdown Timer -->
+        <div class="my-8">
+            <p class="text-xs font-cinzel text-gray-400 tracking-widest mb-3">COUNTDOWN TO THE EIGHTEENTH NIGHT</p>
+            <div class="grid grid-cols-4 gap-2 max-w-sm mx-auto">
+                <div class="bg-black/70 border border-red-900/40 p-2 rounded">
+                    <span id="days" class="block text-xl sm:text-2xl font-cinzel text-red-500 font-bold">00</span>
+                    <span class="text-[10px] text-gray-500 uppercase font-cinzel">Days</span>
+                </div>
+                <div class="bg-black/70 border border-red-900/40 p-2 rounded">
+                    <span id="hours" class="block text-xl sm:text-2xl font-cinzel text-red-500 font-bold">00</span>
+                    <span class="text-[10px] text-gray-500 uppercase font-cinzel">Hours</span>
+                </div>
+                <div class="bg-black/70 border border-red-900/40 p-2 rounded">
+                    <span id="minutes" class="block text-xl sm:text-2xl font-cinzel text-red-500 font-bold">00</span>
+                    <span class="text-[10px] text-gray-500 uppercase font-cinzel">Mins</span>
+                </div>
+                <div class="bg-black/70 border border-red-900/40 p-2 rounded">
+                    <span id="seconds" class="block text-xl sm:text-2xl font-cinzel text-red-500 font-bold">00</span>
+                    <span class="text-[10px] text-gray-500 uppercase font-cinzel">Secs</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Event Notes -->
+        <div class="text-left text-xs text-gray-300 space-y-2 max-w-md mx-auto my-6 bg-red-950/20 border-l-2 border-red-800 p-3">
+            <p><strong class="text-red-400 font-cinzel">Dress Code:</strong> Formal Dark Elegance (Deep Red &amp; Black)</p>
+            <p><strong class="text-red-400 font-cinzel">Guest Note:</strong> Strictly 13+ Event (Designated family toddler exception apply)</p>
+            <p><strong class="text-red-400 font-cinzel">Overseas Guests:</strong> Zoom Livestream link will be provided closer to the event date.</p>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex flex-col sm:flex-row justify-center gap-3 my-6">
+            <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Darlin+Fae+Tingco+18th+Gothic+Debut&amp;dates=20271219T100000Z/20271219T140000Z&amp;details=Gothic+18th+Debut+Celebration+for+Darlin+Fae+I.+Tingco&amp;location=Chalie%27s+Restaurant+%26+D%27Jocos+Resort,+Muzon,+Naic,+Cavite"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="bg-red-950 hover:bg-red-900 text-red-100 border border-red-700/60 px-5 py-2.5 rounded font-cinzel text-xs tracking-wider transition-all">
+                📅 ADD TO GOOGLE CALENDAR
+            </a>
+        </div>
+
+        <!-- Pre-RSVP Form -->
+        <div class="mt-8 border-t border-red-950 pt-6">
+            <h4 class="text-sm font-cinzel text-amber-200 tracking-wider mb-2">PRELIMINARY RSVP</h4>
+            <p class="text-xs text-gray-400 mb-4">Kindly let us know if you can save this date with us.</p>
+
+            <form id="rsvpForm" onsubmit="handleRSVP(event)" class="space-y-3 max-w-md mx-auto text-left">
+                <div>
+                    <label for="fullName" class="block text-[11px] font-cinzel text-gray-400 mb-1">FULL NAME</label>
+                    <input id="fullName" name="fullName" type="text" autocomplete="name" required class="w-full bg-black/80 border border-red-900/60 rounded px-3 py-2 text-xs text-gray-200 focus:outline-none focus:border-red-500">
+                </div>
+                <div>
+                    <label for="attendance" class="block text-[11px] font-cinzel text-gray-400 mb-1">ATTENDANCE MODE</label>
+                    <select id="attendance" name="attendance" required class="w-full bg-black/80 border border-red-900/60 rounded px-3 py-2 text-xs text-gray-200 focus:outline-none focus:border-red-500">
+                        <option value="in-person">In Person (Chalie's Resort, Naic Cavite)</option>
+                        <option value="zoom">Virtual Attendee (Zoom Livestream)</option>
+                        <option value="unable">Regretfully Unable to Attend</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="contact" class="block text-[11px] font-cinzel text-gray-400 mb-1">CONTACT NUMBER / MESSENGER NAME</label>
+                    <input id="contact" name="contact" type="text" autocomplete="tel" required class="w-full bg-black/80 border border-red-900/60 rounded px-3 py-2 text-xs text-gray-200 focus:outline-none focus:border-red-500">
+                </div>
+                <button type="submit" class="w-full bg-gradient-to-r from-red-900 to-red-800 hover:from-red-800 hover:to-red-700 text-white font-cinzel text-xs py-2.5 rounded tracking-widest transition-all mt-2 shadow-lg">
+                    SUBMIT RESPONSE
+                </button>
+            </form>
+            <div id="rsvpToast" class="hidden mt-3 text-xs text-green-400 font-cinzel" role="status" aria-live="polite">
+                ✓ Thank you! Your response has been recorded.
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="relative z-10 text-center text-[10px] font-cinzel text-gray-600 my-4">
+        OFFICIAL SAVE THE DATE • DARLIN FAE I. TINGCO @ 18
+    </footer>
+
+    <!-- JavaScript Engine -->
+    <script>
+        // Countdown Logic (event time is 6:00 PM Philippine Time, UTC+08:00)
+        const targetDate = new Date('2027-12-19T18:00:00+08:00').getTime();
+        function updateCountdown() {
+            const now = Date.now();
+            const difference = targetDate - now;
+            const countdownElements = ['days', 'hours', 'minutes', 'seconds'];
+
+            if (difference <= 0) {
+                countdownElements.forEach(id => {
+                    document.getElementById(id).innerText = '00';
+                });
+                return;
+            }
+
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerText = String(days).padStart(2, '0');
+            document.getElementById('hours').innerText = String(hours).padStart(2, '0');
+            document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Canvas Petals Animation
+        const canvas = document.getElementById('petalCanvas');
+        const ctx = canvas.getContext('2d');
+        let petals = [];
+
+        function resizeCanvas() {
+            const pixelRatio = window.devicePixelRatio || 1;
+            canvas.width = window.innerWidth * pixelRatio;
+            canvas.height = window.innerHeight * pixelRatio;
+            canvas.style.width = `${window.innerWidth}px`;
+            canvas.style.height = `${window.innerHeight}px`;
+            ctx.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Petal {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.x = Math.random() * window.innerWidth;
+                this.y = -20;
+                this.size = Math.random() * 8 + 4;
+                this.speedY = Math.random() * 1.2 + 0.5;
+                this.speedX = Math.random() * 0.8 - 0.4;
+                this.opacity = Math.random() * 0.6 + 0.2;
+                this.rotation = Math.random() * 360;
+            }
+            update() {
+                this.y += this.speedY;
+                this.x += this.speedX;
+                this.rotation += 0.5;
+                if (this.y > window.innerHeight + 20) this.reset();
+            }
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate((this.rotation * Math.PI) / 180);
+                ctx.fillStyle = `rgba(139, 0, 0, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.ellipse(0, 0, this.size, this.size / 2, 0, 0, 2 * Math.PI);
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        for (let i = 0; i < 35; i++) petals.push(new Petal());
+
+        function animatePetals() {
+            ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+            petals.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animatePetals);
+        }
+        animatePetals();
+
+        // Audio Synth Logic (Tone.js Ambient Arpeggio)
+        let isPlaying = false;
+        let synth, loop;
+
+        async function toggleAudio() {
+            const btnText = document.getElementById('musicText');
+            if (!isPlaying) {
+                if (typeof Tone === 'undefined') {
+                    btnText.innerText = 'AUDIO UNAVAILABLE';
+                    return;
+                }
+                await Tone.start();
+                synth = new Tone.PolySynth(Tone.Synth, {
+                    oscillator: { type: "sine" },
+                    envelope: { attack: 0.8, decay: 1.5, sustain: 0.4, release: 2 }
+                }).toDestination();
+                synth.volume.value = -12;
+
+                const notes = ["A3", "C4", "E4", "G4", "F3", "A3", "C4", "E4"];
+                let step = 0;
+                loop = new Tone.Loop(time => {
+                    synth.triggerAttackRelease(notes[step % notes.length], "8n", time);
+                    step++;
+                }, "4n");
+
+                Tone.Transport.bpm.value = 84;
+                Tone.Transport.start();
+                loop.start(0);
+
+                isPlaying = true;
+                btnText.innerText = "PAUSE ATMOSPHERE";
+            } else {
+                Tone.Transport.stop();
+                if (loop) loop.dispose();
+                if (synth) synth.dispose();
+                isPlaying = false;
+                btnText.innerText = "PLAY ATMOSPHERE";
+            }
+        }
+
+        // Form Submit Handler
+        function handleRSVP(e) {
+            e.preventDefault();
+            document.getElementById('rsvpForm').reset();
+            const toast = document.getElementById('rsvpToast');
+            toast.classList.remove('hidden');
+            setTimeout(() => toast.classList.add('hidden'), 5000);
+        }
+    </script>
+</body>
+</html>
